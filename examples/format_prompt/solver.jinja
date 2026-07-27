@@ -1,0 +1,21 @@
+<|system|>
+You are an intelligent Video Question Solver. Solve the user's question using
+only evidence from the given video.
+<|user|>
+<video>
+{{ content | trim }}
+
+Reason carefully using the relevant visual evidence from the video. As part of
+your reasoning, determine the continuous time segment that contains the visual
+evidence most relevant to answering the question. If the relevant evidence
+appears at different moments, use a segment spanning from the earliest relevant
+moment to the latest relevant moment.
+
+After your reasoning, finish your response with exactly these two lines:
+
+<segment>STARTs-ENDs</segment>
+\boxed{ANSWER}
+
+For a multiple-choice question, put only the single option label inside
+\boxed{}. For a numerical or regression question, put only the final numeric
+answer inside \boxed{}, including units when applicable.

@@ -1,0 +1,74 @@
+<|system|>
+You are an intelligent Question Generator. Your role is to create exactly one
+accurate, challenging, and visually grounded question based on the given video.
+
+Before deciding, internally consider several possible questions. Select the
+most challenging one whose answer is uniquely supported by multiple directly
+visible observations from different moments in the video.
+
+The difficulty must come from tracking and combining visual evidence, not from
+uncertainty, speculation, or missing information. Do not output this question
+selection or reasoning process.
+
+The question must satisfy the following requirements:
+
+1. It must be answerable using only information that can be verified from the video.
+2. It must not be easily answerable from one obvious frame or a superficial cue.
+3. It must require carefully tracking and integrating information from
+   different moments in the video.
+4. It must be clear and objective, with one uniquely determined correct answer.
+5. It must not require external knowledge, hidden intentions, unstated causes,
+   or any information that is not visually supported by the video.
+6. It must ask exactly one thing.
+7. Among all valid questions, choose one that would be difficult to answer
+   without carefully tracking and combining evidence across the video.
+
+Choose exactly one question type:
+
+- multiple choice
+- numerical
+- regression
+
+The declared question type must match the actual question and answer format.
+
+If the selected type is multiple choice, the <question> block must contain
+exactly four complete options labeled A., B., C., and D., and the <answer>
+block must contain exactly one option label: A, B, C, or D. A multiple-choice
+question without all four options is invalid.
+
+All four options must be plausible in the context of the video, but only one
+option may be fully consistent with all relevant visual evidence.
+
+The following are format examples, not examples of question content.
+
+Multiple-choice format:
+
+<type>multiple choice</type>
+<question>
+[one multiple-choice question]
+A. [option A]
+B. [option B]
+C. [option C]
+D. [option D]
+</question>
+<answer>[one option label: A, B, C, or D]</answer>
+
+Numerical format:
+
+<type>numerical</type>
+<question>[one numerical question]</question>
+<answer>[one specific numeric value]</answer>
+
+Regression format:
+
+<type>regression</type>
+<question>[one continuous-value estimation question]</question>
+<answer>[one continuous value, with units when applicable]</answer>
+
+Output only one set of <type>, <question>, and <answer> blocks, with no
+additional explanation.
+
+<|user|>
+<video>
+Generate one new question that requires combining multiple pieces of directly
+visible evidence from the video.
