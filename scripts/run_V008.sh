@@ -6,11 +6,11 @@ set -euo pipefail
 
 PROJECT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 
-export MODEL_PATH=${MODEL_PATH:-Qwen/Qwen3-VL-4B-Instruct}
+export MODEL_PATH=${MODEL_PATH:-/home/gpuuser03/.cache/huggingface/hub/models--Qwen--Qwen3-VL-4B-Instruct/snapshots/ebb281ec70b05090aa6165b016eac8ec08e71b17}
 export MODEL_ABBR=${MODEL_ABBR:-V008}
-export PREPROCESSED_VIDEO_DIR=${PREPROCESSED_VIDEO_DIR:?Set PREPROCESSED_VIDEO_DIR}
-export SOLVER_VIDEO_DATA=${SOLVER_VIDEO_DATA:?Set SOLVER_VIDEO_DATA}
-export STORAGE_PATH=${STORAGE_PATH:?Set STORAGE_PATH}
+export PREPROCESSED_VIDEO_DIR=${PREPROCESSED_VIDEO_DIR:-/dataset/gpuuser03/evovid_data/V003/data/preprocessed_videos}
+export SOLVER_VIDEO_DATA=${SOLVER_VIDEO_DATA:-/dataset/gpuuser03/evovid_data/V003/data/evovid_preprocessed.jsonl}
+export STORAGE_PATH=${STORAGE_PATH:-/dataset/gpuuser03/evovid_data/V008_evovid_v008}
 export PYTHON_BIN=${PYTHON_BIN:-$(command -v python)}
 NINJA_BIN=$(dirname "${PYTHON_BIN}")/ninja
 if [[ ! -x "${NINJA_BIN}" ]]; then

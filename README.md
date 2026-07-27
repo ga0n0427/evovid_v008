@@ -50,12 +50,13 @@ python scripts/preprocess_videos.py \
   --skip_errors
 ```
 
-The training launcher expects these paths:
+On this server, `scripts/run_V008.sh` defaults to the validated V003 32k
+preprocessing cache and a dedicated V008 output directory:
 
 ```bash
-export SOLVER_VIDEO_DATA=/path/to/evovid_preprocessed.jsonl
-export PREPROCESSED_VIDEO_DIR=/path/to/preprocessed_videos
-export STORAGE_PATH=/path/to/output/V008
+export SOLVER_VIDEO_DATA=/dataset/gpuuser03/evovid_data/V003/data/evovid_preprocessed.jsonl
+export PREPROCESSED_VIDEO_DIR=/dataset/gpuuser03/evovid_data/V003/data/preprocessed_videos
+export STORAGE_PATH=/dataset/gpuuser03/evovid_data/V008_evovid_v008
 ```
 
 Every row in `SOLVER_VIDEO_DATA` must resolve to an existing preprocessed
@@ -63,11 +64,9 @@ tensor. The setup check validates this contract before training.
 
 ## Model and authentication
 
-The default model is downloaded from Hugging Face:
-
-```bash
-export MODEL_PATH=Qwen/Qwen3-VL-4B-Instruct
-```
+The server launcher defaults to the validated immutable local Qwen snapshot.
+Set `MODEL_PATH=Qwen/Qwen3-VL-4B-Instruct` to use the Hugging Face model ID
+instead.
 
 An existing immutable snapshot may be used instead:
 
@@ -88,9 +87,6 @@ No credentials are stored in this repository.
 
 ```bash
 conda activate evovid_v008_clean
-export SOLVER_VIDEO_DATA=/path/to/evovid_preprocessed.jsonl
-export PREPROCESSED_VIDEO_DIR=/path/to/preprocessed_videos
-export STORAGE_PATH=/path/to/output/V008
 export WANDB_MODE=offline
 
 bash scripts/run_V008.sh --check
@@ -103,13 +99,13 @@ and the expected eight-GPU topology. It does not start model training.
 
 ```bash
 conda activate evovid_v008_clean
-export SOLVER_VIDEO_DATA=/path/to/evovid_preprocessed.jsonl
-export PREPROCESSED_VIDEO_DIR=/path/to/preprocessed_videos
-export STORAGE_PATH=/path/to/output/V008
-export WANDB_MODE=online
 
 bash scripts/run_V008.sh
 ```
+
+No path exports are required on this server. Set `MODEL_PATH`,
+`SOLVER_VIDEO_DATA`, `PREPROCESSED_VIDEO_DIR`, or `STORAGE_PATH` only when
+overriding the validated defaults.
 
 V008 defaults:
 
